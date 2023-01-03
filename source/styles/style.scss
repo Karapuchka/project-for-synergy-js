@@ -1,0 +1,27 @@
+@import 'nullstyle.scss';
+
+.slider {
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+
+    &__line {
+        width: 300%;
+        height: 100%;
+        display: flex;
+        transition: all .7s ease;
+
+        &__item {
+            width: 50%;
+            background-color:red;
+            height: 100%;
+        }
+        &__item:first-child{
+            background-color: black;
+        }
+        &__item:last-child{
+            background-color: aqua;
+        }
+    }
+
+}
