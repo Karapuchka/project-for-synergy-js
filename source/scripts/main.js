@@ -1,104 +1,302 @@
 'use strict'
 
-let detect = new MobileDetect(window.navigator.userAgent)
+let detect = new MobileDetect(window.navigator.userAgent) //Для опрделения устройства пользователя
 
-const sliderLine = document.querySelector('.slider__line');
-const sliderBtn  = document.querySelector('.slider__btn');
-const slider     = document.querySelector('.slider');
+const sliderOne = document.querySelector('.slider-one');
+const sliderTwo = document.querySelector('.slider-two');
+const btn       = document.querySelector('.slider__btns');
 
-let moveSlider = 0; // Число, на которое прибавляется или отнимается положение линии слайдера по оси X
-let itemWidth  = sliderLine.children[0].offsetWidth // Длина одного элемента слайдера
-let lineStart  = 0; // Начальная точнка текущего слайда
-let lineEnd    = itemWidth; // Конечная точка текущего слайда
-let startX     = 0; // Стартовое положение на оски X при нажатии по экрану
-let endX       = 0; // Конечное положение на оски X при отжатии от экрана
+// Анимация которая зависит от устройства пользователя
+if(detect.mobile()){
 
-slider.ontouchstart = (event)=>{
+    btn.onpointerdown = (event)=>{
 
-    startX = event.touches[0].clientX; //Необходим на определения в какую сторону производится свайп
-}
+        if(event.target.classList.contains('slider__btns__btn')){
 
-slider.ontouchmove = (event)=>{
+            event.target.classList.add('slider__btns__btn--active');
+        }
 
-    endX = event.touches[0].clientX;
+        setTimeout(()=>{
 
-    if(moveSlider > 0 && endX > startX){
-
-        moveSlider -= 4;
-
-        sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
-        
+            event.target.classList.remove('slider__btns__btn--active');
+            
+        }, 700)
     }
 
-    if(moveSlider < sliderLine.offsetWidth - itemWidth && endX < startX) {
+    sliderTwo.children[1].onclick = (event)=>{
 
-        moveSlider += 4;
+        if(event.target.classList.contains('slider__btns__btn--radio')){
 
-        sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
-    }
-}
+            for (let i = 0; i < sliderTwo.children[1].children.length; i++) {
+               
+                if (sliderTwo.children[1].children[i].classList.contains('slider__btns__btn--active')) {
 
-slider.ontouchend = ()=>{
+                    sliderTwo.children[1].children[i].classList.remove('slider__btns__btn--active')
+                }
+                
+            }
 
-    if(startX > itemWidth / 2){
-
-        if(endX < itemWidth / 2){
-
-            moveSlider = lineEnd;
-
-            sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
-
-            lineStart += sliderLine.children[0].offsetWidth;
-            lineEnd   += sliderLine.children[0].offsetWidth;
-
-        } else{
-
-            moveSlider = lineStart;
-
-            sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
+            event.target.classList.add('slider__btns__btn--active');
         }
     }
 
-    if(startX < itemWidth / 2){
+} else{
 
-        if(endX > itemWidth / 2){
+    btn.onpointerover = (event)=>{
 
-            moveSlider = lineStart;
+        if(event.target.classList.contains('slider__btns__btn')){
+            
+            event.target.classList.add('slider__btns__btn--active');
+        }
+    }
 
-            sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
+    btn.onpointerout = (event)=>{
 
-            lineStart -= sliderLine.children[0].offsetWidth;
-            lineEnd   -= sliderLine.children[0].offsetWidth;
+        if(event.target.classList.contains('slider__btns__btn')){
+            
+            event.target.classList.remove('slider__btns__btn--active');
+        }
+    }
 
-        } else{
+    sliderTwo.children[1].onclick = (event)=>{
 
-            moveSlider = lineEnd;
+        if(event.target.classList.contains('slider__btns__btn--radio')){
 
-            sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
+            for (let i = 0; i < sliderTwo.children[1].children.length; i++) {
+               
+                if (sliderTwo.children[1].children[i].classList.contains('slider__btns__btn--active')) {
+
+                    sliderTwo.children[1].children[i].classList.remove('slider__btns__btn--active')
+                }
+                
+            }
+
+            event.target.classList.add('slider__btns__btn--active');
         }
     }
 }
 
-sliderBtn.onclick = (event)=>{
+// Изменение размера элементов слайдеров
 
-    if(event.target.closest('#prev') && moveSlider > 0){
+setStyleSliderItem(sliderOne); // Задает размер элементов после загрузки страницы 
+setStyleSliderItem(sliderTwo); // Задает размер элементов после загрузки страницы
 
-        lineStart -= sliderLine.children[0].offsetWidth;
-        lineEnd   -= sliderLine.children[0].offsetWidth;
+window.onresize = ()=>{ 
+    
+    setStyleSliderItem(sliderOne); // Задаёт размер элемента при изменении размера окна обраузера
+    setStyleSliderItem(sliderTwo); // Задаёт размер элемента при изменении размера окна обраузера
+}
 
-        moveSlider -= sliderLine.children[0].offsetWidth;
-
-        sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
+function setStyleSliderItem(slider){ // Функция для изменения размера и цвета элементов
+    
+    for (let i = 0; i < slider.children[0].children.length; i++) {
         
+        slider.children[0].children[i].style.width = `${slider.offsetWidth}px`;
     }
 
-    if (event.target.closest('#next') && moveSlider < sliderLine.offsetWidth / 2) {
+    for(let j = 0; j < slider.children[0].children.length; j++){
 
-        lineStart += sliderLine.children[0].offsetWidth;
-        lineEnd  += sliderLine.children[0].offsetWidth;
-
-        moveSlider += sliderLine.children[0].offsetWidth;
-
-        sliderLine.style.transform = 'translateX('+ -moveSlider + 'px)';
+        slider.children[0].children[j].style.backgroundColor = `rgb(${randomNumber(0, 255)}, ${randomNumber(0, 255)}, ${randomNumber(0, 255)})`;
     }
+
+    slider.children[0].style.width = `${slider.offsetWidth * slider.children[0].children.length}px`
+}
+
+// Функция для получения случайного числа
+function randomNumber(min, max){
+
+    let number = Math.floor(Math.random() * (max - min) + min);
+    return number;
+}
+
+// Движения первого слайдера
+
+let countSliderOne = 0;
+
+sliderOne.children[1].onpointerdown = (event)=>{
+
+    if(event.target.id == 'slider-one-prev'){
+
+        if(countSliderOne < sliderOne.children.length - 1){
+
+            countSliderOne++;
+
+            moveSlider(sliderOne.children[0], countSliderOne, sliderOne.offsetWidth);
+        }
+
+    }
+
+    if(event.target.id == 'slider-one-next'){
+
+        if(countSliderOne >= 0){
+
+            countSliderOne--;
+
+            moveSlider(sliderOne.children[0], countSliderOne, sliderOne.offsetWidth);
+        }
+    }
+}
+
+let xStartSliderOne = 0;
+let xEndSliderOne = 0;
+let moveTouchSliderOne = 0;
+
+sliderOne.children[0].ontouchstart = (event)=>{
+
+    xStartSliderOne = event.touches[0].clientX;
+    console.log('xStartSliderOne: ' + xStartSliderOne);
+}
+
+sliderOne.children[0].ontouchmove = (event)=>{
+
+    xEndSliderOne = event.touches[0].clientX;
+
+    if(xEndSliderOne < xStartSliderOne){
+
+        moveTouchSliderOne -= 4;
+
+        moveSlider(sliderOne.children[0], 1, moveTouchSliderOne);
+    }
+
+    if(xEndSliderOne > xStartSliderOne){
+
+        moveTouchSliderOne += 4;
+
+        moveSlider(sliderOne.children[0], 1, moveTouchSliderOne);
+    }
+}
+
+sliderOne.children[0].ontouchend = ()=>{
+    
+    if (xEndSliderOne < sliderOne.offsetWidth / 2 && xStartSliderOne > sliderOne.offsetWidth / 2 && countSliderOne >= 0){
+
+        countSliderOne--;
+
+        moveSlider(sliderOne.children[0], countSliderOne, sliderOne.offsetWidth);
+
+    } else if (xEndSliderOne > sliderOne.offsetWidth / 2 && xStartSliderOne < sliderOne.offsetWidth / 2 && countSliderOne < sliderOne.children.length - 1){
+
+        countSliderOne++;
+
+        moveSlider(sliderOne.children[0], countSliderOne, sliderOne.offsetWidth);
+
+    } else {
+        moveSlider(sliderOne.children[0], countSliderOne, sliderOne.offsetWidth);
+    }
+
+    moveTouchSliderOne = 0;
+}
+
+// Движение второго слайдера 
+let countSliderTwo = 0;
+
+sliderTwo.children[1].onpointerdown = (event)=>{
+
+    if(event.target.id == 'slider-two-btn-one'){
+
+        for (let i = 0; i < sliderTwo.children[1].children.length; i++) {
+               
+            if (sliderTwo.children[1].children[i].classList.contains('slider__btns__btn--active')) {
+
+                sliderTwo.children[1].children[i].classList.remove('slider__btns__btn--active')
+            }         
+        }
+
+        event.target.classList.add('slider__btns__btn--active');
+
+        countSliderTwo = 1;
+
+        moveSlider(sliderTwo.children[0], countSliderTwo, sliderOne.offsetWidth);
+    }
+
+    if(event.target.id == 'slider-two-btn-two'){
+        
+        for (let i = 0; i < sliderTwo.children[1].children.length; i++) {
+               
+            if (sliderTwo.children[1].children[i].classList.contains('slider__btns__btn--active')) {
+
+                sliderTwo.children[1].children[i].classList.remove('slider__btns__btn--active')
+            }       
+        }
+
+        event.target.classList.add('slider__btns__btn--active');
+
+        countSliderTwo = 0;
+
+        moveSlider(sliderTwo.children[0], countSliderTwo, sliderOne.offsetWidth);
+    }
+
+    if(event.target.id == 'slider-two-btn-three'){
+        
+        for (let i = 0; i < sliderTwo.children[1].children.length; i++) {
+               
+            if (sliderTwo.children[1].children[i].classList.contains('slider__btns__btn--active')) {
+
+                sliderTwo.children[1].children[i].classList.remove('slider__btns__btn--active')
+            }
+            
+        }
+
+        event.target.classList.add('slider__btns__btn--active');
+
+        countSliderTwo = -1;
+
+        moveSlider(sliderTwo.children[0], countSliderTwo, sliderOne.offsetWidth);
+    }
+}
+
+let xStartSliderTwo = 0;
+let xEndSliderTwo = 0;
+let moveTouchSliderTwo = 0;
+
+sliderTwo.children[0].ontouchstart = (event)=>{
+
+    xStartSliderTwo = event.touches[0].clientX;
+}
+
+sliderTwo.children[0].ontouchmove = (event)=>{
+
+    xEndSliderTwo = event.touches[0].clientX;
+
+    if(xEndSliderTwo < xStartSliderTwo){
+
+        moveTouchSliderTwo -= 4;
+
+        moveSlider(sliderTwo.children[0], 1, moveTouchSliderTwo);
+    }
+
+    if(xEndSliderTwo > xStartSliderTwo){
+
+        moveTouchSliderTwo += 4;
+
+        moveSlider(sliderTwo.children[0], 1, moveTouchSliderTwo);
+    }
+}
+
+sliderTwo.children[0].ontouchend = ()=>{
+    
+    if (xEndSliderTwo < sliderTwo.offsetWidth / 2 && xStartSliderTwo > sliderTwo.offsetWidth / 2 && countSliderTwo >= 0){
+
+        countSliderTwo--;
+
+        moveSlider(sliderTwo.children[0], countSliderTwo, sliderTwo.offsetWidth);
+
+    } else if (xEndSliderTwo > sliderTwo.offsetWidth / 2 && xStartSliderTwo < sliderTwo.offsetWidth / 2 && countSliderTwo < sliderTwo.children.length - 1){
+
+        countSliderTwo++;
+
+        moveSlider(sliderTwo.children[0], countSliderTwo, sliderTwo.offsetWidth);
+        
+    } else {
+        moveSlider(sliderTwo.children[0], countSliderTwo, sliderTwo.offsetWidth);
+    }
+
+    moveTouchSliderTwo = 0;
+}
+
+function moveSlider(slider, count, width){
+
+    let move = count * width;
+
+    slider.style.transform = `translateX(${move}px)`;
 }

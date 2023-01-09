@@ -8,18 +8,43 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="slider">
-        <div class="slider__line">
-            <div class="slider__line__item"></div>
-            <div class="slider__line__item"></div>
-            <div class="slider__line__item"></div>
-        </div>
-    </div>
 
-    <div class="slider__btn">
-        <div id="prev">Prev</div>
-        <div id="next">Next</div>
-    </div>
+  <div class="wrapper">
+
+        <div class="slider slider-one">
+
+            <div class="slider__line slider-one__line">
+                <div class="slider__line__item slider-one__line__item"></div>
+                <div class="slider__line__item slider-one__line__item"></div>
+                <div class="slider__line__item slider-one__line__item"></div>
+            </div>
+    
+            <div class="slider__btns slider-one__btns">
+                <div class="slider__btns__btn" id="slider-one-prev">Prev</div>
+                <div class="slider__btns__btn" id="slider-one-next">Next</div>
+            </div>
+
+        </div>
+
+        <div class="slider slider-two">
+
+            <div class="slider__line slider-two__line">
+                <div class="slider__line__item slider-two__line__item"></div>
+                <div class="slider__line__item slider-two__line__item"></div>
+                <div class="slider__line__item slider-two__line__item"></div>
+            </div>
+    
+            <div class="slider__btns slider-two__btns">
+                <div class="slider__btns__btn slider__btns__btn--radio" id="slider-two-btn-one"></div>
+                <div class="slider__btns__btn slider__btns__btn--radio slider__btns__btn--active" id="slider-two-btn-two"></div>
+                <div class="slider__btns__btn slider__btns__btn--radio" id="slider-two-btn-three"></div>
+            </div>
+            
+        </div>
+
+  </div>
+
+    
     
     <script type="module" src="scripts/main.min.js"></script>
 </body>
