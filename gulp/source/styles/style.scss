@@ -1,0 +1,10 @@
+@import 'nullstyle.scss';
+
+.wrapper, .img{
+    width: 100%;
+    height: 100%;
+}
+
+#img{
+    clip-path: url(#cross);
+}

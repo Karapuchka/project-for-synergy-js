@@ -1,0 +1,1 @@
+let detect = new MobileDetect(window.navigator.userAgent);
