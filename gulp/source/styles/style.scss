@@ -21,6 +21,8 @@ h1{
 
     display: flex;
     flex-direction: column;
+
+    background-color: #121212;
 }
 
 .container{
@@ -30,6 +32,10 @@ h1{
     margin: 0 auto;
 }
 
+.main-container{
+    width: 80%;
+}
+
 .header, .footer{
     width: 100%;
     min-height: 100dvh;
@@ -37,6 +43,7 @@ h1{
 
 .header{
    background: url('../img/header-bg.webp') no-repeat center center/cover;
+   box-shadow: inset 0 -70px 25px #121212;
    
     &__container{
         position: relative;
@@ -54,16 +61,44 @@ h1{
 
     &-bottom{
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         flex-direction: column;
-
-        width: 100%;
-        height: auto;
+        gap: 50px;
 
         position: absolute;
         top: 200%;
-        left: -15%;
+        left: 15%;
+
+        &__list-times{
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            transform: translateX(10%);
+            
+            &__item{
+                color: #6b6b6b;
+
+                user-select: none;
+
+                font-size: 16px;
+
+                list-style: none;
+
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 10px;
+
+                .text-bold{
+                    font-size: 36px;
+                    font-weight: 700;
+                    
+                    color: #fff;
+                }
+            }
+        }
     }
 }
 
@@ -116,6 +151,12 @@ h1{
 }
 
 .btn-login{
+    position: relative;
+    
+    user-select: none;
+}
+
+.btn-def{
     width: 185px;
     height: 45px;
 
@@ -123,12 +164,6 @@ h1{
 
     font-size: 16px;
     color: #fff;
-
-    transition: all .7s ease;
-
-    position: relative;
-    
-    user-select: none;
 }
 
 

@@ -28,7 +28,7 @@
                         </ul>
                     </nav>
     
-                    <button type="button" id="js-btn-login" class="btn-login">Зайти в кабинет</button>
+                    <button type="button" id="js-btn-login" class="btn-def btn-login">Зайти в кабинет</button>
               </section>
 
               <section class="header-bottom">
@@ -36,10 +36,10 @@
                     <h1>Первый курс <br/>по компьютерной сборке</h1>
 
                     <ul class="header-bottom__list-times">
-                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-day"></span><span>Дней</span></li>
-                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-hourse"></span><span>Часов</span></li>
-                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-minutes"></span><span>Минут</span></li>
-                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-seconds"></span><span>Секунд</span></li>
+                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-day">00</span><span>Дней</span></li>
+                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-hourse">00</span><span>Часов</span></li>
+                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-minutes">00</span><span>Минут</span></li>
+                        <li class="header-bottom__list-times__item"><span class="text-bold" id="js-seconds">00</span><span>Секунд</span></li>
                     </ul>
 
               </section>
@@ -48,13 +48,50 @@
         </header>
 
         <main class="main">
-            <div class="container">
+            <div class="container main-container">
+
+                <section>
+
+                    <header>
+
+                        <button type="button" class="btn-def" id="js-btn-course">Заказать курс</button>
+
+                        <ul class="list-course">
+
+                            <li class="list-course__item">
+
+                                <ul class="list-course__sub-list">
+                                    <li class="list-course__sub-list__item">Учеников всего: <span class="text-bold">200</span></li>
+                                    <li class="list-course__sub-list__item">Успешно закончили курс: <span class="text-bold">190</span></li>
+                                </ul>
+
+                            </li>
+
+                            <li class="list-course__item list-course__item--big">
+
+                                <ul class="list-course__sub-list">
+                                    <li class="list-course__sub-list__item">Заработано учениками: <span class="text-bold">400 000₽</span></li>
+                                    <li class="list-course__sub-list__item list-course__sub-list__item--big">
+                                        <hr class="list-course__line">
+                                        <p><span class="list-course__sub-list__item__text">0</span><span class="list-course__sub-list__item__text">1 000 000₽</span></p>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                        </ul>
+
+                    </header>
+
+                    <main></main>
+
+                </section>
 
             </div>
         </main>
 
         <footer class="footer">
-            <div class="container">
+            <div class="container main-container">
                 
             </div>
         </footer>
