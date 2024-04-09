@@ -15,6 +15,23 @@ h1{
     user-select: none;
 }
 
+h2{
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.text-bold{
+    font-weight: 700; 
+    color: #fff;
+}
+
+.text-16{
+    font-size: 16px;
+    line-height: 30px;
+    color: #fff;
+}
+
 .wrapper{
     min-height: 100%;
     min-width: 100%;
@@ -92,10 +109,7 @@ h1{
                 gap: 10px;
 
                 .text-bold{
-                    font-size: 36px;
-                    font-weight: 700;
-                    
-                    color: #fff;
+                    font-size: 36px;                    
                 }
             }
         }
@@ -160,7 +174,7 @@ h1{
     width: 185px;
     height: 45px;
 
-    border-radius: 15px;
+    border-radius: 25px;
 
     font-size: 16px;
     color: #fff;
@@ -169,6 +183,173 @@ h1{
 
 .main{
     flex: 1 1 auto;
+
+    &__header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10%;
+
+        width: 100%;
+        height: 130px;
+    }
+}
+
+.list-course{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 5%;
+
+    flex: 1 1 auto;
+
+    .list-course__item{
+        width: 250px;
+        
+        list-style: none;
+    }
+
+    .list-course__item--big{
+        flex: 1 1 auto;
+
+        .list-course__sub-list{
+            gap: 20px;
+
+        }
+    }
+
+    &__sub-list{
+        color: #919191;
+
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        &__item{
+            list-style: none;
+
+            font-size: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__item--big{
+            display: flex;
+            flex-direction: column;
+
+            .list-course__sub-list__item__text{ 
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                width: 100%;
+
+                padding: 10px 0;
+
+                span{
+                    display: block;
+                }
+            }
+        }
+
+        &__item--not-stretch{
+            justify-content: flex-start;
+            gap: 3%;
+        }
+    }
+
+    &__line{
+        width: 100%;
+        height: 6px;
+
+        background-color: #fff;
+
+        position: relative;
+    }
+
+    &__line::before{
+        content: '';
+
+        width: 65%;
+        height: 6px;
+
+        background-color: #fff;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        background: linear-gradient(45deg, #DF5950, #451046);
+
+    }
+}
+
+.frame-pc{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 140px;
+
+    margin: 200px 0;
+
+    &__img{
+        width: 466px;
+        height: 466px;
+
+        position: relative;
+
+        &__icon{
+            height: 100%;
+            width: 100%;
+
+            position: absolute;
+            bottom: -17%;
+            right: 0;
+
+            z-index: 3;
+        } 
+    }
+
+    &__img::after{
+        content: '';
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 466px;
+        height: 466px;
+
+        z-index: 2;
+
+        background: black;
+    }
+
+    &__img::before{
+        content: '';
+
+        position: absolute;
+        top: -8%;
+        left: -8%;
+
+        width: 540px;
+        height: 540px;
+
+        z-index: 1;
+
+        background: linear-gradient(45deg, #C89AFC, #7C6AFA);
+    }
+
+    &__desk{
+        width: 640px;
+
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 45px;
+    }
 }
 
 
