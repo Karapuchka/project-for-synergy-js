@@ -148,23 +148,23 @@
 
                 <h2 class="footer__title">Хотите задать  вопрос?</h2>
 
-                <form class="footer__form" action="/send-email" method="post">
+                <form name="sendQuestion" class="footer__form" method="post">
 
                     <div class="footer__form__double">
-                        <input class="footer__form__input" type="email" name="input-email" id="input-email" placeholder="email@mail.ru">
+                        <input class="footer__form__input" type="text" name="input_email" id="input-email" placeholder="email@mail.ru">
                         <label class="footer__form__label" for="input-email">Ваша электронная почта</label>
                     </div>
 
                     <div class="footer__form__double footer__form__double--between">
                         
                         <div class="footer__form__double">
-                            <input class="footer__form__input" type="text" name="input-name" id="input-name" placeholder="Иван">
+                            <input class="footer__form__input" type="text" name="input_name" id="input-name" placeholder="Иван">
                             <label class="footer__form__label" for="input-name">Ваше имя</label>
                         </div>
 
                         
                         <div class="footer__form__double">
-                            <input class="footer__form__input" type="text" name="input-age" id="input-age" placeholder="18">
+                            <input class="footer__form__input" type="text" name="input_age" id="input-age" placeholder="18">
                             <label class="footer__form__label" for="input-age">Ворзраст</label>
                         </div>
 
@@ -172,10 +172,10 @@
 
                     <div class="footer__form__double footer__form__double--title-top">
                         <label class="footer__form__label" id="input-comment-label" for="input-comment">Ваш вопрос</label>
-                        <textarea class="footer__form__input" name="input-comment" id="input-comment" cols="30" rows="10" placeholder="Как дела?"></textarea>
+                        <textarea class="footer__form__input input-comment" name="input_comment" cols="30" rows="10" placeholder="Как дела?"></textarea>
                     </div>
 
-                    <button class="footer__form__btn" type="submit">Отправить</button>
+                    <button class="footer__form__btn" name="btn_submit" type="button">Отправить</button>
 
                 </form>
 

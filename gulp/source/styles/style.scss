@@ -187,6 +187,8 @@ h3{
             text-align: center;
 
             resize: none;
+
+            transition: all .7s ease;
         }
 
         &__label{
@@ -248,7 +250,7 @@ h3{
     font-size: 20px;
 }
 
-#input-comment{
+.input-comment{
     width: 350px;
     height: 200px;
 
@@ -259,6 +261,12 @@ h3{
     color: #000;
 
     font-size: 15px;
+}
+
+.input-error{
+    transition: all .7s ease;
+    border-bottom: 2px solid red;
+    background: rgb(241, 68, 68);
 }
 
 @media screen and (max-width: 700px) {
